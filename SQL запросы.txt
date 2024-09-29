@@ -1,0 +1,27 @@
+CREATE TABLE Buyer (id int PRIMARY KEY, name varchar, balance decimal(20, 2), password varchar, age int);
+CREATE TABLE Game (id int PRIMARY KEY,title varchar, cost decimal(20, 2), size decimal(20, 2), description varchar, age_limited int DEFAULT 0);
+CREATE TABLE Buyer_Game (Buyer_id INTEGER NOT NULL, Game_id INTEGER NOT NULL, FOREIGN KEY (Buyer_id) REFERENCES Buyer (id) FOREIGN KEY (Game_id) REFERENCES Game (id));
+
+INSERT INTO Buyer (id, name, balance, password, age) VALUES (1, 'Nindja', 200, 'ferwrwhh', 30);
+INSERT INTO Buyer (id, name, balance, password, age) VALUES (2, 'Vasya', 20.5, '12345678', 8);
+INSERT INTO Buyer (id, name, balance, password, age) VALUES (3, 'Ivan', 500.75, 'ferwrwhh', 45);
+
+INSERT INTO Game (id, title, cost, size, description, age_limited) VALUES (1, 'Andor', 20.05, 15, 'RPG-Cooperate-Game', 0);
+INSERT INTO Game (id, title, cost, size, description, age_limited) VALUES (2, 'Archem Terror', 20.05, 20,'Mystick game', 1);
+INSERT INTO Game (id, title, cost, size, description, age_limited) VALUES (3, 'Explosiv cats', 10, 5, 'Salon Game', 1);
+
+SELECT * FROM Buyer;
+SELECT * FROM Game;
+
+UPDATE Game
+SET age_limited = 0,
+    size = 15
+WHERE title = 'Archem Terror';
+SELECT * FROM Game;
+
+DELETE FROM Buyer
+WHERE age < 18;
+SELECT * FROM Buyer;
+
+SELECT * FROM Game
+WHERE age_limited = 0
